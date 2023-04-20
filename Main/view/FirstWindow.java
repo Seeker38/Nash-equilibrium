@@ -20,6 +20,7 @@ public class FirstWindow extends JFrame {
 
     private FirstWindowController fwc;
 
+    //initializes the GUI by creating the various components and setting their properties. It also adds event listeners to the doneBtn button, which is displayed on the first window. When the button is clicked, the program creates a new instance of the FirstWindowController class, which is responsible for handling the user input and processing the matrix data. The secondWindow method is then called, which displays the second window, where the user can input the values of the matrix.
     public FirstWindow() {
 
         frame2 = new JFrame("First Window");
@@ -71,10 +72,11 @@ public class FirstWindow extends JFrame {
         frame1.setVisible(true);
     }
 
+    //The secondWindow method creates a new JFrame called frame2, which is used to display the matrix input form. It creates a headPanel and a footPanel, which are added to the frame2 JFrame. The headPanel is used to display the labels for the matrix rows and columns, while the footPanel is used to display the "Done" button.
     void secondWindow(int M, int N) {
         ArrayList<JTextField> textFieldsList = new ArrayList<>();
         frame2.setLayout(new BorderLayout());
-        var headPanel = new JPanel();
+        var headPanel = new JPanel(); //created using a nested for loop that iterates over the rows and columns of the matrix. For each row and column, it creates a new JPanel that contains two JTextField objects. These JTextField objects are added to the textFieldsList, which is used later to process the matrix data.
         var footPanel = new JPanel();
 
         var okBtn = new JButton("Done");
@@ -130,11 +132,12 @@ public class FirstWindow extends JFrame {
 
     }
 
+    //The thirdWindow method creates a new JFrame called frame3, which is used to display the various information about the matrix. It creates a mainPanel, which is used to display the matrix and the various information about it, such as the Nash Equilibrium, Pareto optimal solutions, and secured strategies. It uses the JScrollPane class to add a scroll bar to the mainPanel, so that the user can scroll through the information if it exceeds the size of the window.
     private void thirdWindow() {
         Player p1 = fwc.getPlayer1();
         Player p2 = fwc.getPlayer2();
 
-        frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //is used to display the various information about the matrix. It creates a mainPanel, which is used to display the matrix and the various information about it, such as the Nash Equilibrium, Pareto optimal solutions, and secured strategies. It uses the JScrollPane class to add a scroll bar to the mainPanel, so that the user can scroll through the information if it exceeds the size of the window.
 
         JPanel mainPanel = new JPanel();
         JScrollPane scrollBar = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -234,6 +237,7 @@ public class FirstWindow extends JFrame {
     }
 
 
+    //The displayMatrix method is used to display the matrix in the mainPanel. It uses the headPanel created in the secondWindow method to create the labels for the rows and columns of the matrix. It then iterates over the textFieldsList, which contains the input values of the matrix, and adds them to the mainPanel
     private void displayMatrix(JPanel mainPanel) {
         StringBuilder label = new StringBuilder();
         JLabel l;
@@ -272,6 +276,8 @@ public class FirstWindow extends JFrame {
      * @param otherPlayer   The other player
      * @param mainPanel     the main panel of window
      */
+
+     //find any game issues, such as dominant strategies, in the matrix, and labelWithColor, which is used to create labels with a specified color.
     private void findGameIssue(Strategy[] strategies, Player currentPlayer, Player otherPlayer, JPanel mainPanel) {
         JLabel l;
 
