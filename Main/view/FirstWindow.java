@@ -148,7 +148,6 @@ public class FirstWindow extends JFrame {
         frame3.add(scrollBar);
         //=============================================================================
         ArrayList<String> nashList = fwc.getNashEqualibrium2();
-        ArrayList<String> paretoList = fwc.getPareto();
         //==============================================================================
         System.out.println("Nash Equalibrium:");
         for (String string : nashList) {
@@ -156,19 +155,7 @@ public class FirstWindow extends JFrame {
         }       
 
         //================================================================================
-        // secured strategies
-        System.out.println("Security Level: ");
-        ArrayList<Strategy> ss1 = fwc.p1.getSecuretyLevel2();
-        ArrayList<Strategy> ss2 = fwc.p2.getSecuretyLevel2();
-        System.out.println("------------------");
-        for (Strategy string : ss1) {
-            System.out.println(fwc.displaySecuredStrategy2("A", string));
-        }
-        System.out.println("-------------------");
-        for (Strategy string : ss2) {
-            System.out.println(fwc.displaySecuredStrategy2("B", string));
-        }
-        System.out.println("-----------------");
+        
         //======================================================================================
 
         displayMatrix(mainPanel);
@@ -196,27 +183,13 @@ public class FirstWindow extends JFrame {
 
         
         mainPanel.add(new JLabel(fwc.showMsg("Nash Equalibrium: ", nashList)));
-        mainPanel.add(new JLabel(fwc.showMsg("Pareto-Optimum: ", paretoList)));
-
-        // Security Level
-        for (Strategy strategy : ss1)
-            mainPanel.add(new JLabel(displaySecuredStrategy2("A", strategy)));
-
-        for (Strategy strategy : ss2)
-            mainPanel.add(new JLabel(displaySecuredStrategy2("B", strategy)));
 
         frame3.pack();
         frame3.setLocationRelativeTo(null);
         frame3.setVisible(true);
     }
 
-    /**
-     * Creates JLabel with text lable and color c
-     * 
-     * @param text The text to be displayed by the label.
-     * @param c    The color of the text.
-     * @return JLabel
-     */
+    
     private JLabel labelWithColor(String text, Color c) {
         JLabel l;
         l = new JLabel(text);
@@ -224,17 +197,6 @@ public class FirstWindow extends JFrame {
         return l;
     }
 
-    private String displaySecuredStrategy2(String playerName, Strategy s){
-        return new StringBuilder()
-                            .append("Secured Strategies of ")
-                            .append(playerName)
-                            .append(": ")
-                            .append(s.getName())
-                            .append(" (")
-                            .append(s.getMinValue())
-                            .append(")")
-                            .toString();
-    }
 
 
     //The displayMatrix method is used to display the matrix in the mainPanel. It uses the headPanel created in the secondWindow method to create the labels for the rows and columns of the matrix. It then iterates over the textFieldsList, which contains the input values of the matrix, and adds them to the mainPanel
@@ -268,14 +230,7 @@ public class FirstWindow extends JFrame {
         }
     }
 
-    /**
-     * 
-     * @param strategies    Array with two values {dominant strategy, dominated
-     *                      strategy}
-     * @param currentPlayer The owner of strategies
-     * @param otherPlayer   The other player
-     * @param mainPanel     the main panel of window
-     */
+   
 
      //find any game issues, such as dominant strategies, in the matrix, and labelWithColor, which is used to create labels with a specified color.
     private void findGameIssue(Strategy[] strategies, Player currentPlayer, Player otherPlayer, JPanel mainPanel) {

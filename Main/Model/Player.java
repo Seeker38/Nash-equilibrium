@@ -74,22 +74,7 @@ public class Player {
     }
 
     //The addBestResponse method is a helper method for getBestResponses2. It takes several parameters and adds a string to the ArrayList of responses, based on the values of the strategies.
-    public ArrayList<Strategy> getSecuretyLevel2() {
-        int maxminVal = strategies.get(0).getMinValue();
-        ArrayList<Strategy> s = new ArrayList<>();
-        s.add(strategies.get(0));
-        for (int i = 1; i < strategies.size(); i++) {
-            if (maxminVal == strategies.get(i).getMinValue()) {
-                maxminVal = strategies.get(i).getMinValue();
-                s.add(strategies.get(i));
-            }else if (maxminVal < strategies.get(i).getMinValue()) {
-                s.clear();
-                maxminVal = strategies.get(i).getMinValue();
-                s.add(strategies.get(i));
-            }
-        }
-        return s;
-    }
+    
 
     /*
      * Compare between two Strategies Values if l1.val < l2.val @return -1 if @all

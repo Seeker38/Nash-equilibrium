@@ -79,42 +79,7 @@ public class FirstWindowController {
     //The getPareto method returns a list of Pareto-optimal strategies for the game. The method uses four nested loops to iterate over all possible pairs of strategies for the two players, and checks if any other pair of strategies dominates the current pair. If not, the method adds the current pair to the paretoList.
 
 
-    public ArrayList<String> getPareto() {
-        ArrayList<String> paretoList = new ArrayList<>();
-        Strategy s;
-        boolean exist = false;
-        int x1, x2, y1, y2;
-
-        for (int i = 0; i < M; i++) {
-            s = p1.getStrategies().get(i);
-            for (int j = 0; j < N; j++) {
-                for (int j2 = 0; j2 < M; j2++) {
-                    for (int k = 0; k < N; k++) {
-                        x1 = s.getValues().get(j);
-                        x2 = p1.getStrategies().get(j2).getValues().get(k);
-                        y1 = p2.getStrategies().get(j).getValues().get(i);
-                        y2 = p2.getStrategies().get(k).getValues().get(j2);
-
-                        if (x1 == x2 && y1 == y2)
-                            continue;
-
-                        if (x1 <= x2 && y1 <= y2) {
-                            exist = true;
-                            break;
-                        }
-                    }
-                    if (exist)
-                        break;
-                }
-                if (!exist) {
-                    paretoList.add("(" + s.getName() + "," + p2.getStrategies().get(j).getName() + ")");
-                }
-                exist = false;
-
-            }
-        }
-        return paretoList;
-    }
+    
 
     //return the p1
     public Player getPlayer1() {
@@ -150,16 +115,15 @@ public class FirstWindowController {
 
     //The showMsg method returns a string that describes the dominant strategy for a player. The method takes as input a Player object and returns a string that includes the name of the dominant strategy, whether it is strictly or weakly dominant, and the name of the strategy that dominates it.
     public String showMsg(String label, ArrayList<String> list) {
-        // Pareto-Optimum
-        StringBuilder paretoString = new StringBuilder(label);
+        StringBuilder Str = new StringBuilder(label);
         if (!list.isEmpty()) {
             for (int i = 0; i < list.size(); i++) {
-                paretoString.append(list.get(i)).append(" ");
+                Str.append(list.get(i)).append(" ");
             }
         } else
-            paretoString.append("Doesn't exist");
+            Str.append("Doesn't exist");
 
-        return paretoString.toString();
+        return Str.toString();
     }
 
     //The getGameIssueMsg method returns a string that describes the dominant strategy for a player. The method takes as input a Player object and returns a string that includes the name of the dominant strategy, whether it is strictly or weakly dominant, and the name of the strategy that dominates it.
