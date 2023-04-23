@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Strategy {
-    
+
     private String name;
     private ArrayList<Integer> values;
 
-    public Strategy(String name, ArrayList<Integer> values){
+    public Strategy(String name, ArrayList<Integer> values) {
         this.name = name;
         this.values = values;
     }
@@ -21,7 +21,7 @@ public class Strategy {
         return name;
     }
 
-    public int getMinValue(){
+    public int getMinValue() {
         return Collections.min(getValues());
     }
 }
